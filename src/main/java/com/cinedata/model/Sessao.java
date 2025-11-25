@@ -1,31 +1,59 @@
 package com.cinedata.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "sessao")
 public class Sessao {
-    private final int id;
-    private final Filme filme;
-    private final LocalDateTime dataHora;
-    private final double preco;
-    private final boolean ativa;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
-    public Sessao(int id, Filme filme, LocalDateTime dataHora, double preco, boolean ativa) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "filmeId", nullable = false)
+    private Filme filme;
+    
+    @ManyToOne
+    @JoinColumn(name = "salaId", nullable = false)
+    private Sala sala;
+    
+    @Column(nullable = false)
+    private double preco;
+    
+    @Column(name = "data_hora", nullable = false)
+    private LocalDateTime dataHora;
+    
+    @Column(nullable = false)
+    private boolean ativa;
+    
+    // Construtores
+    public Sessao() {}
+    
+    public Sessao(Filme filme, Sala sala, double preco, LocalDateTime dataHora, boolean ativa) {
         this.filme = filme;
-        this.dataHora = dataHora;
+        this.sala = sala;
         this.preco = preco;
+        this.dataHora = dataHora;
         this.ativa = ativa;
     }
     
-    public int getId() { return id; }
-    public Filme getFilme() { return filme; }
-    public LocalDateTime getDataHora() { return dataHora; }
-    public double getPreco() { return preco; }
-    public boolean isAtiva() { return ativa; }
+    // Getters e Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
     
-    @Override
-    public String toString() {
-        return String.format("Sessao[id=%d, filme=%s, dataHora=%s, preco=%.2f, ativa=%s]",
-                id, filme.getNome(), dataHora, preco, ativa);
-    }
+    public Filme getFilme() { return filme; }
+    public void setFilme(Filme filme) { this.filme = filme; }
+    
+    public Sala getSala() { return sala; }
+    public void setSala(Sala sala) { this.sala = sala; }
+    
+    public double getPreco() { return preco; }
+    public void setPreco(double preco) { this.preco = preco; }
+    
+    public LocalDateTime getDataHora() { return dataHora; }
+    public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
+    
+    public boolean isAtiva() { return ativa; }
+    public void setAtiva(boolean ativa) { this.ativa = ativa; }
 }

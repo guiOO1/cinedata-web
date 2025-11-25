@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CineData</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a th:href="@{/}" class="logo">CineData</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a th:href="@{/}" class="nav-link">Início</a></li>
+                    <li><a th:href="@{/sessoes}" class="nav-link">Sessões</a></li>
+                    <li><a th:href="@{/login}" class="nav-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="auth-container">
+            <div class="login-form">
+                <h2>Fazer Login</h2>
+                <form id="loginForm" th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required>
+                        <span class="error-message" id="senhaError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Entrar no Sistema</button>
+                </form>
+
+                <div class="auth-links">
+                    <p>Não tem conta? <a th:href="@{/cadastro}">Cadastrar-se</a></p>
+                    <a th:href="@{/}">← Voltar para página inicial</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script th:src="@{/js/form-handler.js}"></script>
+</body>
+</html>

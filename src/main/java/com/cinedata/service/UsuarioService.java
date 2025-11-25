@@ -1,7 +1,9 @@
 package com.cinedata.service;
 
 import com.cinedata.model.Usuario;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioService {
     
     public boolean podeFazerReserva(Usuario usuario) {

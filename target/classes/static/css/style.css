@@ -1,0 +1,546 @@
+/* ===== RESET SIMPLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== LAYOUT BÁSICO ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== HEADER CORRIGIDO ===== */
+.header {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #666;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: #2563eb;
+    background: #f3f4f6;
+}
+
+.nav-link.active {
+    color: #2563eb;
+    background: #f3f4f6;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===== BOTÕES SIMPLES ===== */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: white;
+    color: #2563eb;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* ===== FORMULÁRIOS ===== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 2rem 0;
+}
+
+.auth-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.error-message {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.auth-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== SESSÕES ===== */
+.sessoes-container {
+    padding: 2rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.sessoes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sessao-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sessao-info h4 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.sessao-info p {
+    color: #666;
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+/* ===== RESERVAS ===== */
+.reserva-container {
+    padding: 2rem 0;
+}
+
+.reserva-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.reserva-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.resumo-sessao {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #2563eb;
+}
+
+/* ===== ASSENTOS ===== */
+.assentos-container {
+    margin: 2rem 0;
+}
+
+.assentos-theater {
+    background: #1f2937;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.tela {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 1rem;
+    background: #374151;
+    border-radius: 6px;
+}
+
+.assentos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.assentos-linha {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.linha-label {
+    color: white;
+    font-weight: 600;
+    width: 24px;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+/* Botões de assento */
+.assento-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    background: #4b5563;
+    color: white;
+    font-weight: 600;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.assento-btn:hover:not(.ocupado) {
+    background: #6b7280;
+    transform: scale(1.05);
+}
+
+.assento-btn.selecionado {
+    background: #16a34a;
+    transform: scale(1.1);
+}
+
+.assento-btn.ocupado {
+    background: #dc2626;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.legenda-assentos {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.legenda-assento {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legenda-disponivel {
+    background: #4b5563;
+}
+
+.legenda-selecionado {
+    background: #16a34a;
+}
+
+.legenda-ocupado {
+    background: #dc2626;
+}
+
+.resumo-reserva {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.voltar-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.voltar-link a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.voltar-link a:hover {
+    text-decoration: underline;
+}
+
+/* ===== CONFIRMAÇÃO ===== */
+.confirmacao-container {
+    padding: 2rem 0;
+}
+
+.confirmacao-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.confirmacao-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #16a34a;
+}
+
+.confirmacao-titulo {
+    color: #16a34a;
+    margin-bottom: 1rem;
+}
+
+.confirmacao-mensagem {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.detalhes-reserva {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.detalhe-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detalhe-item:last-child {
+    border-bottom: none;
+}
+
+.detalhe-label {
+    font-weight: 500;
+    color: #666;
+}
+
+.detalhe-valor {
+    font-weight: 600;
+    color: #333;
+}
+
+.confirmacao-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.instrucoes {
+    background: #fef3c7;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #92400e;
+    font-size: 0.875rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 2rem 0;
+    margin-top: auto;
+    text-align: center;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.875rem;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-menu ul {
+        gap: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .sessao-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .confirmacao-actions {
+        flex-direction: column;
+    }
+    
+    .assento-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .legenda-assentos {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+}

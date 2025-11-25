@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessões - CineData</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a th:href="@{/}" class="logo">CineData</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a th:href="@{/}" class="nav-link">Início</a></li>
+                    <li><a th:href="@{/sessoes}" class="nav-link">Sessões</a></li>
+                    <li><a th:href="@{/login}" class="nav-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Mensagens Flash -->
+        <div th:if="${mensagem}" class="alert alert-success">
+            <span th:text="${mensagem}"></span>
+        </div>
+        <div th:if="${erro}" class="alert alert-error">
+            <span th:text="${erro}"></span>
+        </div>
+
+        <section class="sessoes-container">
+            <div class="container">
+                <h2>Sessões Disponíveis</h2>
+                
+                <div th:if="${#lists.isEmpty(sessoes)}" class="empty-state">
+                    <p>Nenhuma sessão disponível no momento.</p>
+                </div>
+                
+                <div class="sessoes-list" id="sessoesList">
+                    <div th:each="sessao : ${sessoes}" class="sessao-card">
+                        <div class="sessao-info">
+                            <h4 th:text="${sessao.filme.nome}">Nome do Filme</h4>
+                            <p><strong>Data:</strong> <span th:text="${#temporals.format(sessao.dataHora, 'dd/MM/yyyy - HH:mm')}">00/00/0000 - 00:00</span></p>
+                            <p><strong>Sala:</strong> Sala <span th:text="${sessao.sala.numero}">1</span></p>
+                            <p><strong>Preço:</strong> R$ <span th:text="${#numbers.formatDecimal(sessao.preco, 1, 2)}">0,00</span></p>
+                            <p><strong>Assentos disponíveis:</strong> <span th:text="${sessao.sala.capacidadeMax - T(com.cinedata.repository.ReservaRepository).countBySessaoIdAndValidaTrue(sessao.id)}">0</span></p>
+                        </div>
+                        <div class="sessao-actions">
+                            <a th:href="@{/sessoes/{id}(id=${sessao.id})}" class="btn btn-primary">Reservar Ingresso</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CineData - Sistema de Gerenciamento de Cinema</p>
+        </div>
+    </footer>
+
+    <script th:src="@{/js/navigation.js}"></script>
+</body>
+</html>

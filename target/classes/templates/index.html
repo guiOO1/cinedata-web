@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineData - Sistema de Cinema</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a th:href="@{/}" class="logo">CineData</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a th:href="@{/}" class="nav-link">Início</a></li>
+                    <li><a th:href="@{/sessoes}" class="nav-link">Sessões</a></li>
+                    <li><a th:href="@{/login}" class="nav-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Mensagens Flash -->
+        <div th:if="${mensagem}" class="alert alert-success">
+            <span th:text="${mensagem}"></span>
+        </div>
+        <div th:if="${erro}" class="alert alert-error">
+            <span th:text="${erro}"></span>
+        </div>
+
+        <section class="hero">
+            <div class="container">
+                <h2>Bem-vindo ao CineData</h2>
+                <p>Reserve seus ingressos online com facilidade e agilidade</p>
+                
+                <!-- Filmes em Cartaz Dinâmicos -->
+                <div th:if="${not #lists.isEmpty(filmes)}" class="filmes-cartaz">
+                    <h3>Filmes em Cartaz:</h3>
+                    <div class="filmes-grid">
+                        <div th:each="filme : ${filmes}" class="filme-card">
+                            <h4 th:text="${filme.nome}"></h4>
+                            <p>Classificação: <span th:text="${filme.faixaEtaria}">+</span> anos</p>
+                            <p th:text="${filme.descricao} ?: 'Sinopse em breve'"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a th:href="@{/sessoes}" class="btn btn-primary">Ver Sessões</a>
+                    <a th:href="@{/login}" class="btn btn-secondary">Fazer Login</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CineData - Sistema de Gerenciamento de Cinema</p>
+        </div>
+    </footer>
+
+    <script th:src="@{/js/navigation.js}"></script>
+</body>
+</html>

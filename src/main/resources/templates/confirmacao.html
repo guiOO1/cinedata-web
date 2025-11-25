@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação - CineData</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a th:href="@{/}" class="logo">CineData</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a th:href="@{/}" class="nav-link">Início</a></li>
+                    <li><a th:href="@{/sessoes}" class="nav-link">Sessões</a></li>
+                    <li><a th:href="@{/login}" class="nav-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!-- Mensagens Flash -->
+        <div th:if="${mensagem}" class="alert alert-success">
+            <span th:text="${mensagem}"></span>
+        </div>
+
+        <section class="confirmacao-container">
+            <div class="container">
+                <div class="confirmacao-card">
+                    <div class="confirmacao-icon">✅</div>
+                    <h2>Reserva Confirmada!</h2>
+                    <p class="confirmacao-mensagem" th:text="${mensagem} ?: 'Sua reserva foi realizada com sucesso!'"></p>
+                    
+                    <div class="detalhes-reserva">
+                        <p><strong>Código da reserva:</strong> <span th:text="${reservaCodigo} ?: 'BRT000000'">#BRT20241125001</span></p>
+                        <p><strong>Filme:</strong> <span th:text="${filme} ?: 'Divertida Mente 2'">Divertida Mente 2</span></p>
+                        <p><strong>Data:</strong> <span th:text="${#temporals.format(data, 'dd/MM/yyyy - HH:mm')} ?: '25/11/2024 - 16:00'">25/11/2024 - 16:00</span></p>
+                        <p><strong>Assentos:</strong> <span th:text="${assentos} ?: 'A3, A4'">A3, A4</span></p>
+                        <p><strong>Total:</strong> R$ <span th:text="${#numbers.formatDecimal(total, 1, 2)} ?: '36,00'">36,00</span></p>
+                    </div>
+
+                    <div class="confirmacao-actions">
+                        <a th:href="@{/sessoes}" class="btn btn-primary">Fazer Outra Reserva</a>
+                        <a th:href="@{/}" class="btn btn-secondary">Página Inicial</a>
+                    </div>
+
+                    <div class="instrucoes">
+                        <p>Apresente este código na bilheteria do cinema.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script th:src="@{/js/navigation.js}"></script>
+</body>
+</html>

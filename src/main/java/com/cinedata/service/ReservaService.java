@@ -3,7 +3,9 @@ package com.cinedata.service;
 import com.cinedata.model.Usuario;
 import com.cinedata.model.Sessao;
 import java.time.LocalDateTime;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ReservaService {
     
     public boolean podeReservar(Usuario usuario, Sessao sessao) {

@@ -1,5 +1,8 @@
 package com.cinedata.service;
 
+import org.springframework.stereotype.Service;    
+
+@Service
 public class CalculadoraDesconto {
     
     private static final double DESCONTO_RESERVA_ONLINE = 0.10; // 10%

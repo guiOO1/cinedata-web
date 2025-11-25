@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva - CineData</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a th:href="@{/}" class="logo">CineData</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a th:href="@{/}" class="nav-link">Início</a></li>
+                    <li><a th:href="@{/sessoes}" class="nav-link">Sessões</a></li>
+                    <li><a th:href="@{/login}" class="nav-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!-- Mensagens Flash -->
+        <div th:if="${erro}" class="alert alert-error">
+            <span th:text="${erro}"></span>
+        </div>
+
+        <section class="reserva-container">
+            <div class="container">
+                <h2>Confirmar Reserva</h2>
+                
+                <div class="resumo-sessao" th:if="${sessao}">
+                    <h4 th:text="${sessao.filme.nome}">Nome do Filme</h4>
+                    <p><strong>Data:</strong> <span th:text="${#temporals.format(sessao.dataHora, 'dd/MM/yyyy - HH:mm')}">00/00/0000 - 00:00</span></p>
+                    <p><strong>Sala:</strong> Sala <span th:text="${sessao.sala.numero}">1</span></p>
+                    <p><strong>Preço unitário:</strong> R$ <span th:text="${#numbers.formatDecimal(sessao.preco, 1, 2)}">0,00</span></p>
+                </div>
+
+                <form id="reservaForm" th:action="@{/reservas/nova}" method="post" th:if="${sessao}">
+                    <input type="hidden" name="sessaoId" th:value="${sessao.id}">
+                    
+                    <div class="form-group">
+                        <label for="quantidade">Quantidade de ingressos:</label>
+                        <select id="quantidade" name="quantidade" required>
+                            <option value="1">1 ingresso</option>
+                            <option value="2">2 ingressos</option>
+                            <option value="3">3 ingressos</option>
+                            <option value="4">4 ingressos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Selecione os assentos:</label>
+                        <div class="assentos-container">
+                            <div class="assentos-theater">
+                                <div class="tela">T E L A</div>
+                                
+                                <div class="assentos-grid">
+                                    <!-- Fileira A -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">A</span>
+                                        <button type="button" class="assento-btn" data-assento="A1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="A2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="A3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="A4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="A5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="A6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="A7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="A8">8</button>
+                                    </div>
+                        
+                                    <!-- Fileira B -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">B</span>
+                                        <button type="button" class="assento-btn" data-assento="B1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="B2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="B3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="B4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="B5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="B6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="B7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="B8">8</button>
+                                    </div>
+                        
+                                    <!-- Fileira C -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">C</span>
+                                        <button type="button" class="assento-btn" data-assento="C1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="C2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="C3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="C4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="C5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="C6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="C7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="C8">8</button>
+                                    </div>
+                                    
+                                    <!-- Fileira D -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">B</span>
+                                        <button type="button" class="assento-btn" data-assento="D1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="D2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="D3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="D4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="D5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="D6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="D7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="D8">8</button>
+                                    </div>
+                                    
+                                    
+                                    <!-- Fileira E -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">B</span>
+                                        <button type="button" class="assento-btn" data-assento="E1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="E2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="E3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="E4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="E5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="E6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="E7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="E8">8</button>
+                                    </div>
+                                    
+                                                                        
+                                    <!-- Fileira F -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">B</span>
+                                        <button type="button" class="assento-btn" data-assento="F1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="F2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="F3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="F4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="F5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="F6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="F7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="F8">8</button>
+                                    </div>
+                                    
+                                    <!-- Fileira G -->
+                                    <div class="assentos-linha">
+                                        <span class="linha-label">B</span>
+                                        <button type="button" class="assento-btn" data-assento="G1">1</button>
+                                        <button type="button" class="assento-btn" data-assento="G2">2</button>
+                                        <button type="button" class="assento-btn" data-assento="G3">3</button>
+                                        <button type="button" class="assento-btn" data-assento="G4">4</button>
+                                        <button type="button" class="assento-btn" data-assento="G5">5</button>
+                                        <button type="button" class="assento-btn" data-assento="G6">6</button>
+                                        <button type="button" class="assento-btn" data-assento="G7">7</button>
+                                        <button type="button" class="assento-btn" data-assento="G8">8</button>
+                                    </div> 
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- Legenda -->
+                            <div class="legenda-assentos">
+                                <div class="legenda-item">
+                                    <div class="legenda-assento legenda-disponivel"></div>
+                                    <span>Disponível</span>
+                                </div>
+                                <div class="legenda-item">
+                                    <div class="legenda-assento legenda-selecionado"></div>
+                                    <span>Selecionado</span>
+                                </div>
+                                <div class="legenda-item">
+                                    <div class="legenda-assento legenda-ocupado"></div>
+                                    <span>Ocupado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="assentosSelecionados" name="assentos">
+                    
+                    <div class="resumo-reserva">
+                        <p><strong>Total: R$ <span id="totalReserva">0,00</span></strong></p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+                </form>
+
+                <div class="voltar-link">
+                    <a th:href="@{/sessoes}">← Voltar para sessões</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script th:src="@{/js/reservas.js}"></script>
+</body>
+</html>
